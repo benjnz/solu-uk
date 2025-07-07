@@ -1,87 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>solu</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
-<link rel="shortcut icon" href="/favicons/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="solu" />
-<link rel="manifest" href="/favicons/site.webmanifest" />
-  
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Solu – Refillable Sunscreen for Sustainable Skincare</title>
+    <meta name="description" content="Discover Solu: innovative refillable sunscreen designed for eco-conscious skincare. Protect your skin and the planet with our sustainable, high-quality SPF solutions.">
+    <meta name="keywords" content="refillable sunscreen, sustainable sunscreen, eco-friendly sunscreen, reef-safe sunscreen, SPF, skincare, sustainable beauty, Solu, refillable skincare, ocean-friendly sunscreen">
+    <meta name="author" content="Solu">
+
+    <meta property="og:title" content="Solu – Refillable Sunscreen for Sustainable Skincare" />
+    <meta property="og:description" content="Discover Solu: innovative refillable sunscreen designed for eco-conscious skincare. Protect your skin and the planet with our sustainable, high-quality SPF solutions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.yourwebsite.com/" /> <meta property="og:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" /> <meta property="og:image:alt" content="Solu refillable sunscreen bottle and eco-friendly packaging" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Solu – Refillable Sunscreen for Sustainable Skincare" />
+    <meta name="twitter:description" content="Discover Solu: innovative refillable sunscreen designed for eco-conscious skincare. Protect your skin and the planet with our sustainable, high-quality SPF solutions." />
+    <meta name="twitter:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" /> <meta name="twitter:creator" content="@YourTwitterHandle" /> <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="solu" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+
+    <link rel="canonical" href="https://www.yourwebsite.com/" /> </head>
 
 <body>
-  <div class="header-background">
-    <div class="logo-container">
-      <img src="solu.png" alt="Company Logo" />
+    <div class="header-background">
+        <div class="logo-container">
+            <img src="solu.png" alt="Solu Refillable Sunscreen Company Logo" />
+        </div>
     </div>
-  </div>
 
-  <div class="media-wrapper">
-    <img 
-      id="scrollGif"
-      src="solu1.png"
-      alt="Scroll Triggered GIF"
-      data-gif="solu.gif"
-      data-final="solu2.png"
-      data-duration="2040"
-    />
-    <div class="text-block">
-      refillable<br>sunscreen
+    <div class="media-wrapper">
+        <img
+            id="scrollGif"
+            src="solu1.png"
+            alt="Solu refillable sunscreen being applied"
+            data-gif="solu.gif"
+            data-final="solu2.png"
+            data-duration="2040"
+        />
+        <div class="text-block">
+            refillable<br>sunscreen
+        </div>
     </div>
-  </div>
-  
-  <div class="video-launcher">
-    <button id="playButton">▶</button>
-  </div>
 
-  <div id="videoOverlay" class="hidden">
-    <div class="video-container">
-      <video id="promoVideo" playsinline>
-        <source src="solu.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <button id="closeButton">✖️</button>
+    <div class="video-launcher">
+        <button id="playButton" aria-label="Play promotional video about Solu refillable sunscreen">▶</button>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const gifElement = document.getElementById("scrollGif");
-      const gifSrc = gifElement.getAttribute("data-gif");
-      const finalFrame = gifElement.getAttribute("data-final");
-      const duration = parseInt(gifElement.getAttribute("data-duration"), 10);
+    <div id="videoOverlay" class="hidden">
+        <div class="video-container">
+            <video id="promoVideo" playsinline controls preload="none" poster="solu_video_thumbnail.jpg"> <source src="solu.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="closeButton" aria-label="Close video player">✖️</button>
+        </div>
+    </div>
 
-      setTimeout(() => {
-        gifElement.src = `${gifSrc}?t=${new Date().getTime()}`;
-        console.log("GIF triggered after 0 seconds.");
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const gifElement = document.getElementById("scrollGif");
+            const gifSrc = gifElement.getAttribute("data-gif");
+            const finalFrame = gifElement.getAttribute("data-final");
+            const duration = parseInt(gifElement.getAttribute("data-duration"), 10);
 
-        setTimeout(() => {
-          gifElement.src = finalFrame;
-        }, duration);
-      }, 0);
+            // Using a more robust image preloading strategy
+            const preloadedGif = new Image();
+            preloadedGif.src = gifSrc;
+            preloadedGif.onload = () => {
+                gifElement.src = gifSrc; // Set GIF after it's loaded
+                console.log("GIF triggered after 0 seconds.");
 
-      const playButton = document.getElementById("playButton");
-      const videoOverlay = document.getElementById("videoOverlay");
-      const promoVideo = document.getElementById("promoVideo");
-      const closeButton = document.getElementById("closeButton");
+                setTimeout(() => {
+                    gifElement.src = finalFrame;
+                }, duration);
+            };
 
-      playButton.addEventListener("click", () => {
-        videoOverlay.classList.add("show");
-        promoVideo.currentTime = 0;
-        promoVideo.muted = false;
-        promoVideo.play();
-      });
+            const playButton = document.getElementById("playButton");
+            const videoOverlay = document.getElementById("videoOverlay");
+            const promoVideo = document.getElementById("promoVideo");
+            const closeButton = document.getElementById("closeButton");
 
-      closeButton.addEventListener("click", () => {
-        promoVideo.pause();
-        videoOverlay.classList.remove("show");
-      });
-    });
-  </script>
+            playButton.addEventListener("click", () => {
+                videoOverlay.classList.add("show");
+                promoVideo.currentTime = 0;
+                promoVideo.muted = false; // Ensure video isn't muted
+                promoVideo.play();
+            });
+
+            closeButton.addEventListener("click", () => {
+                promoVideo.pause();
+                promoVideo.currentTime = 0; // Reset video to start
+                videoOverlay.classList.remove("show");
+            });
+        });
+    </script>
 </body>
 </html>
