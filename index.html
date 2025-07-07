@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>solu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="header-background">
+    <div class="logo-container">
+      <img src="solu.png" alt="Company Logo" />
+    </div>
+  </div>
+
+  <div class="media-wrapper">
+    <img 
+      id="scrollGif"
+      src="solu1.png"
+      alt="Scroll Triggered GIF"
+      data-gif="solu.gif"
+      data-final="solu2.png"
+      data-duration="2040"
+    />
+    <div class="text-block">
+      refillable<br>sunscreen
+    </div>
+  </div>
+  
+  <div class="video-launcher">
+    <button id="playButton">▶️</button>
+  </div>
+
+  <div id="videoOverlay" class="hidden">
+    <div class="video-container">
+      <video id="promoVideo" playsinline>
+        <source src="solu.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button id="closeButton">✖️</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const gifElement = document.getElementById("scrollGif");
+      const gifSrc = gifElement.getAttribute("data-gif");
+      const finalFrame = gifElement.getAttribute("data-final");
+      const duration = parseInt(gifElement.getAttribute("data-duration"), 10);
+
+      setTimeout(() => {
+        gifElement.src = `${gifSrc}?t=${new Date().getTime()}`;
+        console.log("GIF triggered after 0 seconds.");
+
+        setTimeout(() => {
+          gifElement.src = finalFrame;
+        }, duration);
+      }, 0);
+
+      const playButton = document.getElementById("playButton");
+      const videoOverlay = document.getElementById("videoOverlay");
+      const promoVideo = document.getElementById("promoVideo");
+      const closeButton = document.getElementById("closeButton");
+
+      playButton.addEventListener("click", () => {
+        videoOverlay.classList.add("show");
+        promoVideo.currentTime = 0;
+        promoVideo.muted = false;
+        promoVideo.play();
+      });
+
+      closeButton.addEventListener("click", () => {
+        promoVideo.pause();
+        videoOverlay.classList.remove("show");
+      });
+    });
+  </script>
+</body>
+</html>
