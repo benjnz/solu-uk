@@ -46,8 +46,7 @@
             data-final="solu2.png"
             data-duration="2060"
             style="display: none;" />
-        <div class="text-block">
-            refillable<br>sunscreen
+        <div class="text-block" id="myTextBlock"> refillable<br>sunscreen
         </div>
     </div>
 
@@ -71,6 +70,16 @@
             const gifSrc = gifElement.getAttribute("data-gif");
             const finalFrame = gifElement.getAttribute("data-final");
             const duration = parseInt(gifElement.getAttribute("data-duration"), 10);
+
+            // === Start of Text Block Fade-in Logic ===
+            const textBlock = document.getElementById('myTextBlock'); // Select the text block element
+            const textFadeInDelay = 2000; // 2 seconds delay for text fade-in
+
+            setTimeout(() => {
+                textBlock.classList.add('show');
+            }, textFadeInDelay);
+            // === End of Text Block Fade-in Logic ===
+
 
             // Preload both the GIF and the final PNG image
             const preloadedGif = new Image();
