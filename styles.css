@@ -58,7 +58,7 @@ body {
     white-space: normal;
     /* margin-top: -5vw; <-- This overrides the previous margin-top */
     transition: opacity 2s ease-in-out;
-    opacity: 1; /* Start with the text block invisible */
+    opacity: 0; /* Start with the text block invisible */
 }
 
 /* This class will be added by JavaScript to make the text visible */
