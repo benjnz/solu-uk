@@ -11,12 +11,16 @@
     <meta property="og:title" content="Solu – Refillable Sunscreen for Sustainable Skincare" />
     <meta property="og:description" content="Discover Solu: innovative refillable sunscreen designed for eco-conscious skincare. Protect your skin and the planet with our sustainable, high-quality SPF solutions." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.yourwebsite.com/" /> <meta property="og:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" /> <meta property="og:image:alt" content="Solu refillable sunscreen bottle and eco-friendly packaging" />
+    <meta property="og:url" content="https://www.yourwebsite.com/" />
+    <meta property="og:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" />
+    <meta property="og:image:alt" content="Solu refillable sunscreen bottle and eco-friendly packaging" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Solu – Refillable Sunscreen for Sustainable Skincare" />
     <meta name="twitter:description" content="Discover Solu: innovative refillable sunscreen designed for eco-conscious skincare. Protect your skin and the planet with our sustainable, high-quality SPF solutions." />
-    <meta name="twitter:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" /> <meta name="twitter:creator" content="@YourTwitterHandle" /> <link rel="stylesheet" href="styles.css" />
+    <meta name="twitter:image" content="https://www.yourwebsite.com/images/solu_social_share.jpg" />
+    <meta name="twitter:creator" content="@YourTwitterHandle" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
@@ -24,7 +28,8 @@
     <meta name="apple-mobile-web-app-title" content="solu" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
 
-    <link rel="canonical" href="https://www.yourwebsite.com/" /> </head>
+    <link rel="canonical" href="https://www.yourwebsite.com/" />
+</head>
 
 <body>
     <div class="header-background">
@@ -36,12 +41,11 @@
     <div class="media-wrapper">
         <img
             id="scrollGif"
-            src="solu1.png"
-            alt="Solu refillable sunscreen being applied"
+            src="" alt="Solu refillable sunscreen being applied"
             data-gif="solu.gif"
             data-final="solu2.png"
             data-duration="2060"
-        />
+            style="display: none;" />
         <div class="text-block">
             refillable<br>sunscreen
         </div>
@@ -53,7 +57,8 @@
 
     <div id="videoOverlay" class="hidden">
         <div class="video-container">
-            <video id="promoVideo" playsinline controls preload="none" poster="solu_video_thumbnail.jpg"> <source src="solu.mp4" type="video/mp4">
+            <video id="promoVideo" playsinline controls preload="none" poster="solu_video_thumbnail.jpg">
+                <source src="solu.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <button id="closeButton" aria-label="Close video player">✖️</button>
@@ -67,17 +72,41 @@
             const finalFrame = gifElement.getAttribute("data-final");
             const duration = parseInt(gifElement.getAttribute("data-duration"), 10);
 
-            // Using a more robust image preloading strategy
+            // Preload both the GIF and the final PNG image
             const preloadedGif = new Image();
+            const preloadedPng = new Image();
+
+            let gifLoaded = false;
+            let pngLoaded = false;
+
+            // Load GIF first
             preloadedGif.src = gifSrc;
             preloadedGif.onload = () => {
-                gifElement.src = gifSrc; // Set GIF after it's loaded
-                console.log("GIF triggered after 0 seconds.");
-
-                setTimeout(() => {
-                    gifElement.src = finalFrame;
-                }, duration);
+                gifLoaded = true;
+                checkAllLoaded();
             };
+
+            // Load PNG in parallel
+            preloadedPng.src = finalFrame;
+            preloadedPng.onload = () => {
+                pngLoaded = true;
+                checkAllLoaded();
+            };
+
+            function checkAllLoaded() {
+                if (gifLoaded && pngLoaded) {
+                    // Both images are loaded, now display the GIF
+                    gifElement.src = gifSrc;
+                    gifElement.style.display = 'block'; // Make the image visible
+                    console.log("GIF displayed after all images loaded.");
+
+                    // Set timeout to switch to the final PNG after the GIF duration
+                    setTimeout(() => {
+                        gifElement.src = finalFrame;
+                        console.log("Switched to final PNG.");
+                    }, duration);
+                }
+            }
 
             const playButton = document.getElementById("playButton");
             const videoOverlay = document.getElementById("videoOverlay");
