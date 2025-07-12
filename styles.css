@@ -57,6 +57,8 @@ body {
   user-select: none;
   white-space: normal;
   margin-top: -5vw;
+  transition: opacity 2s ease-in-out;
+
 }
 
 .video-launcher {
