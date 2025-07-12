@@ -46,19 +46,24 @@ body {
 }
 
 .text-block {
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 5em;
-  color: rgba(0, 0, 0, 0.16);
-  text-align: center;
-  text-transform: none;
-  line-height: 1;
-  margin-top: 2vw;
-  user-select: none;
-  white-space: normal;
-  margin-top: -5vw;
-  transition: opacity 2s ease-in-out;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 5em;
+    color: rgba(0, 0, 0, 0.16);
+    text-align: center;
+    text-transform: none;
+    line-height: 1;
+    margin-top: 2vw; /* You have two margin-top properties, the last one will take precedence. Consider if you need both. */
+    user-select: none;
+    white-space: normal;
+    /* margin-top: -5vw; <-- This overrides the previous margin-top */
+    transition: opacity 2s ease-in-out;
+    opacity: 0; /* Start with the text block invisible */
+}
 
+/* This class will be added by JavaScript to make the text visible */
+.text-block.show {
+    opacity: 1;
 }
 
 .video-launcher {
